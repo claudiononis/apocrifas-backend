@@ -1,19 +1,27 @@
-# APOC backend demo v0.3 (abapGit)
+# APOC backend demo v0.4 — estructura RAP + clases skeleton
 
-Backend demo para Facturas Apócrifas, derivado del patrón técnico de ZPADRON_EMBARGO.
+Objetivo de esta versión: importar por abapGit la estructura declarativa del backend y crear las clases con esqueletos mínimos válidos. La lógica ABAP se completa después, clase por clase, directamente en ADT y se activa antes de consolidarla nuevamente en Git.
 
-**Guardrail:** esta versión NO modifica Business Partner. El writer devuelve WRITE_DISABLED.
+## Incluido
 
-## Importación
-1. Crear repo Git privado y subir este contenido (raíz con `.abapgit.xml` y `src/`).
-2. En ADT > abapGit Repositories > +, vincular el repo al paquete `ZAPOCRIFAS`.
-3. Pull/Import.
-4. Activar primero tablas, luego CDS/BDEF/clases y por último Service Definition/Binding.
-5. Si el Service Binding no queda publicado tras importar, abrir `ZUI_APOC_RUN_O4` y publicar manualmente.
+- Tablas y draft tables APOC.
+- CDS interface/projection.
+- Behavior Definitions RAP.
+- Behavior pool `ZBP_I_APOC_RUN`.
+- Clases `ZCL_APOC_*` como esqueletos mínimos.
+- `ZCL_APOC_JOB` conserva únicamente las interfaces bgPF necesarias para que el behavior saver pueda referenciarla.
 
-## Alcance v0.3
-CSV APOC -> RAP Run -> bgPF -> parser -> I_Supplier -> staging/log -> TERMINADO.
-Sin PATCH a API_BUSINESS_PARTNER.
+## Diferido intencionalmente
 
-## Importante
-Los archivos están serializados con el mismo formato abapGit observado en el paquete real `ZPADRON_EMBARGO`. No pueden ser validados contra el compilador de tu tenant desde fuera de S/4; cualquier incompatibilidad de release/released objects se corrige tras el primer Pull/activation.
+- Service Definition `ZUI_APOC_RUN_O4`.
+- Service Binding `ZUI_APOC_RUN_O4`.
+- Lógica funcional de Parser/Matcher/Ingesta/Processor/Writer/Job.
+- PATCH real a Business Partner.
+
+## Metodología
+
+1. Pull abapGit para crear estructura y clases skeleton.
+2. Verificar que los objetos existan/activen.
+3. Completar una clase por vez en ADT.
+4. Activar y probar cada clase.
+5. Al cierre, Stage/Commit/Push desde abapGit para que Git quede con la serialización generada por S/4.

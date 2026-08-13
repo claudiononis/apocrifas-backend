@@ -12,10 +12,17 @@ etag master LastChangedAt
   create; update; delete;
   action refresh;
   determination setInitialStatus on save { create; }
-  field ( readonly ) RunId, Estado, TotalRegistros, TotalValidos, TotalMatch, TotalBloqueables, TotalNoEncontrados, TotalErrores, MensajeError, CreatedBy, CreatedAt, LastChangedAt;
+  field ( readonly ) RunId, Estado, TotalRegistros, TotalValidos, TotalMatch,
+                     TotalBloqueables, TotalNoEncontrados, TotalErrores,
+                     MensajeError, CreatedBy, CreatedAt, LastChangedAt;
   field ( numbering : managed ) RunId;
   association _Log { create; with draft; }
-  draft action Edit; draft action Activate optimized; draft action Discard; draft action Resume; draft determine action Prepare;
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
   mapping for zapoc_run
   {
     RunId              = run_id;
@@ -48,6 +55,7 @@ etag dependent by _Run
   update; delete;
   field ( readonly ) RunId, LineNumber;
   association _Run { with draft; }
+
   mapping for zapoc_log
   {
     RunId      = run_id;
@@ -59,4 +67,3 @@ etag dependent by _Run
     CreatedAt  = created_at;
   }
 }
-

@@ -1,4 +1,4 @@
-CLASS zcl_apoc_parser DEFINITION
+CLASS zcl_apoc_ingesta DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC.
@@ -10,5 +10,5 @@ CLASS zcl_apoc_parser DEFINITION
 ENDCLASS.
 
 
-CLASS zcl_apoc_parser IMPLEMENTATION.
+CLASS zcl_apoc_ingesta IMPLEMENTATION.
 ENDCLASS.

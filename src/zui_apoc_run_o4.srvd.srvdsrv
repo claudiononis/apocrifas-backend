@@ -1,5 +1,0 @@
-@EndUserText.label: 'Servicio APOC - corridas y log'
-define service ZUI_APOC_RUN_O4 {
-  expose ZC_APOC_RUN as ApocRun;
-  expose ZC_APOC_LOG as ApocLog;
-}

@@ -1,0 +1,26 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_APOC_RUN alias Run
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  use association _Log { create; with draft; }
+}
+
+define behavior for ZC_APOC_LOG alias Log
+{
+  use update;
+  use delete;
+
+  use association _Run { with draft; }
+}
